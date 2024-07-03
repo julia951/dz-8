@@ -6,6 +6,7 @@ public class StudentsGroup {
     private final Student headman;
     private final List<Student> students;
     private final List<String> tasks;
+    private final List<String> completedTasks;
 
     public StudentsGroup(Student headman) {
         if (headman == null) {
@@ -14,6 +15,7 @@ public class StudentsGroup {
         this.headman = headman;
         this.students = new ArrayList<>();
         this.tasks = new ArrayList<>();
+        this.completedTasks = new ArrayList<>();
     }
 
     public Student getHeadman() {
@@ -26,6 +28,10 @@ public class StudentsGroup {
 
     public List<String> getTasks() {
         return Collections.unmodifiableList(tasks);
+    }
+
+    public List<String> getCompletedTasks() {
+        return Collections.unmodifiableList(completedTasks);
     }
 
     public StudentsGroup setHeadman(Student newHeadman) {
@@ -66,5 +72,8 @@ public class StudentsGroup {
         if (!tasks.contains(task)) {
             throw new IllegalArgumentException("Task does not exist for the group");
         }
+
+        completedTasks.add(task);
+        System.out.println("Task \"" + task + "\" completed by " + student.getName());
     }
 }
